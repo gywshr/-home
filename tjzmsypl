@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <ctype.h>
+
+/*将字母和次数两个数组同步*/
+void tb(char *p,int *m,char *q)
+{
+    int flag=0,j;
+    char c='a';
+    for(c='a';c<='z';c++)
+    {
+    for(j=0;j<200;j++)
+        if(*(q+j)==c)
+            flag++;
+            *(m+c-'a')=flag;
+            *(p+c-'a')=c;
+            flag=0;
+    }
+}
+/*冒泡法排序从大到小*/
+void sort(int *m,char *p)
+{
+    int t,i,j;
+    char d;
+    for(i=0;i<25;i++)
+
+        for(j=0;j<25-i;j++)
+        if(*(m+j)<*(m+j+1))
+        {
+        t=*(m+j);
+        d=*(p+j);
+        *(m+j)=*(m+j+1);
+        *(p+j)=*(p+j+1);
+        *(m+j+1)=t;
+        *(p+j+1)=d;
+        }
+}
+int main()
+{
+    char a[200]={0},f[26],*q,*p;
+    int i,s[26],*m;
+    q=a;
+    p=f;
+    m=s;
+    printf("\\\\\\\\\\请输\t入\t需\t要\t统\t计\t的\t英\t文\t段落:\\\\\\\\\\\n");
+    gets(a);
+    for(i=0;i<=200;i++)//将大写转化为小写
+        a[i]=tolower(a[i]);
+        tb(f,s,q);
+        sort(s,f);
+        for(i=0;i<26;i++)
+        printf("字母%c出现次数：%d\n",f[i],s[i]);
+        return 0;
+}
